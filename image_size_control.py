@@ -15,7 +15,7 @@ class WindowClass(QMainWindow, from_class) :
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.setWindowTitle("SpinBox, Slider, PixMap")
+        self.setWindowTitle("Image Size Control")
 
         self.pixmap = QPixmap()
         self.pixmap.load("dog.jpg")
