@@ -22,13 +22,13 @@ class WindowClass(QMainWindow, from_class) :
         
         min_width = 1
         min_height = 1
-        max_width = self.pixmap.width()
-        max_height = self.pixmap.height()
+        self.max_width = self.pixmap.width()
+        self.max_height = self.pixmap.height()
 
-        self.spinBox_width.setRange(min_width, max_width)
-        self.spinBox_height.setRange(min_height, max_height)
-        self.slider_width.setRange(min_width, max_width)
-        self.slider_height.setRange(min_height, max_height)
+        self.spinBox_width.setRange(min_width, self.max_width)
+        self.spinBox_height.setRange(min_height, self.max_height)
+        self.slider_width.setRange(min_width, self.max_width)
+        self.slider_height.setRange(min_height, self.max_height)
 
         step = self.spinBox_width.singleStep()
         self.editStep.setText(str(step))
@@ -37,11 +37,10 @@ class WindowClass(QMainWindow, from_class) :
         self.slider_width.setSingleStep(step)
         self.slider_height.setSingleStep(step)
 
-
-        self.spinBox_width.setValue(max_width)
-        self.spinBox_height.setValue(max_height)
-        self.slider_width.setValue(max_width)
-        self.slider_height.setValue(max_height)
+        self.spinBox_width.setValue(self.max_width)
+        self.spinBox_height.setValue(self.max_height)
+        self.slider_width.setValue(self.max_width)
+        self.slider_height.setValue(self.max_height)
         
         self.btnApply.clicked.connect(self.Apply)
 
@@ -109,6 +108,11 @@ class WindowClass(QMainWindow, from_class) :
             self.pixmap.load(name[0])
             self.labelPixmap.setPixmap(self.pixmap)
             self.labelPixmap.resize(self.pixmap.width(), self.pixmap.height())
+
+            self.spinBox_width.setValue(self.pixmap.width())
+            self.spinBox_height.setValue(self.pixmap.height())
+            self.slider_width.setValue(self.pixmap.width())
+            self.slider_height.setValue(self.pixmap.height())
                 
         
 

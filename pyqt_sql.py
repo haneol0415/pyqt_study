@@ -26,8 +26,10 @@ class WindowClass(QMainWindow, from_class) :
         cursor = self.remote.cursor(buffered=True)
 
         self.cbSex.addItem("All")
-        self.cbSex.addItem("F")
-        self.cbSex.addItem("M")
+        cursor.execute("SELECT DISTINCT SEX FROM celeb")
+        result = cursor.fetchall()
+        for res in result:
+            self.cbSex.addItem(res[0])
 
         self.cbJobTitle.addItem("All")
         self.cbJobTitle.addItem("가수")
@@ -98,7 +100,6 @@ class WindowClass(QMainWindow, from_class) :
         cursor.execute(query + birth_query + " and " + sex_qeury + " and " + job_qeury + " and " + agency_query)
 
         result = cursor.fetchall()
-        row = self.tableWidget.rowCount()
         for res in result:
             row = self.tableWidget.rowCount()
             self.tableWidget.insertRow(row)
