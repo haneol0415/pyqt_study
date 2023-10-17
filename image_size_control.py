@@ -18,17 +18,12 @@ class WindowClass(QMainWindow, from_class) :
         self.setWindowTitle("Image Size Control")
 
         self.pixmap = QPixmap()
-        self.pixmap.load("dog.jpg")
-        
-        min_width = 1
-        min_height = 1
-        self.max_width = self.pixmap.width()
-        self.max_height = self.pixmap.height()
+        # self.pixmap.load("dog.jpg")
 
-        self.spinBox_width.setRange(min_width, self.max_width)
-        self.spinBox_height.setRange(min_height, self.max_height)
-        self.slider_width.setRange(min_width, self.max_width)
-        self.slider_height.setRange(min_height, self.max_height)
+        self.spinBox_width.setRange(0,0)
+        self.spinBox_height.setRange(0, 0)
+        self.slider_width.setRange(0, 0)
+        self.slider_height.setRange(0, 0)
 
         step = self.spinBox_width.singleStep()
         self.editStep.setText(str(step))
@@ -37,10 +32,10 @@ class WindowClass(QMainWindow, from_class) :
         self.slider_width.setSingleStep(step)
         self.slider_height.setSingleStep(step)
 
-        self.spinBox_width.setValue(self.max_width)
-        self.spinBox_height.setValue(self.max_height)
-        self.slider_width.setValue(self.max_width)
-        self.slider_height.setValue(self.max_height)
+        self.spinBox_width.setValue(0)
+        self.spinBox_height.setValue(0)
+        self.slider_width.setValue(0)
+        self.slider_height.setValue(0)
         
         self.btnApply.clicked.connect(self.Apply)
 
@@ -109,12 +104,16 @@ class WindowClass(QMainWindow, from_class) :
             self.labelPixmap.setPixmap(self.pixmap)
             self.labelPixmap.resize(self.pixmap.width(), self.pixmap.height())
 
+            self.spinBox_width.setRange(0, self.pixmap.width())
+            self.spinBox_height.setRange(0, self.pixmap.height())
+            self.slider_width.setRange(0, self.pixmap.width())
+            self.slider_height.setRange(0, self.pixmap.height())
+
             self.spinBox_width.setValue(self.pixmap.width())
             self.spinBox_height.setValue(self.pixmap.height())
             self.slider_width.setValue(self.pixmap.width())
             self.slider_height.setValue(self.pixmap.height())
-                
-        
+            
 
 
 if __name__ == "__main__":
